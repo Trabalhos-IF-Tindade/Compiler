@@ -1,0 +1,9 @@
+package br.edu.ifgoiano;
+import java_cup.runtime.*;
+
+terminal a, b;
+non terminal S, E, EPSILON;
+
+S ::= a b E a;
+E ::= EPSILON | b b E;
+EPSILON ::= ;
