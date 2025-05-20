@@ -31,8 +31,9 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\005\000\002\002\006\000\002\002\004\000\002\003" +
-    "\003\000\002\003\005\000\002\004\002" });
+    "\000\006\000\002\003\002\000\002\002\012\000\002\002" +
+    "\004\000\002\004\002\000\002\002\013\000\002\002\003" +
+    "" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -40,12 +41,17 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\013\000\004\004\004\001\002\000\004\005\007\001" +
-    "\002\000\004\002\006\001\002\000\004\002\000\001\002" +
-    "\000\006\004\ufffd\005\010\001\002\000\004\005\014\001" +
-    "\002\000\004\004\uffff\001\002\000\004\004\013\001\002" +
-    "\000\004\002\001\001\002\000\006\004\ufffd\005\010\001" +
-    "\002\000\004\004\ufffe\001\002" });
+    "\000\024\000\006\003\005\005\004\001\002\000\004\007" +
+    "\020\001\002\000\006\002\ufffc\005\ufffc\001\002\000\006" +
+    "\002\010\005\007\001\002\000\004\007\011\001\002\000" +
+    "\004\002\uffff\001\002\000\004\011\012\001\002\000\004" +
+    "\010\013\001\002\000\004\004\014\001\002\000\004\010" +
+    "\ufffe\001\002\000\004\010\016\001\002\000\004\006\017" +
+    "\001\002\000\006\002\ufffd\005\ufffd\001\002\000\004\011" +
+    "\021\001\002\000\004\010\022\001\002\000\004\004\023" +
+    "\001\002\000\004\010\001\001\002\000\004\010\025\001" +
+    "\002\000\004\006\026\001\002\000\006\002\000\005\000" +
+    "\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -53,11 +59,13 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\013\000\004\002\004\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\006\003\011\004\010" +
+    "\000\024\000\004\002\005\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\006\003\014\004\010\001\001" +
-    "\000\002\001\001" });
+    "\001\000\004\004\014\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\003\023\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -86,13 +94,31 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Indicates start state. */
   public int start_state() {return 0;}
   /** Indicates start production. */
-  public int start_production() {return 1;}
+  public int start_production() {return 2;}
 
   /** <code>EOF</code> Symbol index. */
   public int EOF_sym() {return 0;}
 
   /** <code>error</code> Symbol index. */
   public int error_sym() {return 1;}
+
+
+
+  public void syntax_error(Symbol s){
+    this.defineError(s.left, s.right);
+  }
+  public void defineError(int line, int column, String text) {
+    Yylex scanner = (Yylex) this.getScanner();
+  scanner.defineError(line, column, text);
+  }
+  public void defineError(int linha, int coluna){
+    Yylex scanner = (Yylex) this.getScanner();
+    scanner.defineError(linha, coluna);
+  }
+  public void defineError(String text) {
+    Yylex scanner = (Yylex) this.getScanner();
+    scanner.defineError(text);
+  }
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -120,16 +146,36 @@ class CUP$Parser$actions {
       switch (CUP$Parser$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // S ::= a b E a 
+          case 0: // NT$0 ::= 
             {
               Object RESULT =null;
+		int nleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Integer n = (Integer)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+  if(n < 0 || n > 120)
+    parser.defineError(nleft, nright, "Idade inválida");
+ 
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$0",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // $START ::= S EOF 
+          case 1: // S ::= LBRACE AGE COLON QUOTE NUMBER NT$0 QUOTE RBRACE 
+            {
+              Object RESULT =null;
+              // propagate RESULT from NT$0
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int nleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Integer n = (Integer)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 2: // $START ::= S EOF 
             {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
@@ -143,29 +189,40 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // E ::= EPSILON 
+          case 3: // NT$1 ::= 
             {
               Object RESULT =null;
+		int nleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Integer n = (Integer)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("E",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+  if(n < 0 || n > 120) 
+    parser.defineError(nleft, nright, "Idade inválida");
+ 
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$1",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // E ::= b b E 
+          case 4: // S ::= S LBRACE AGE COLON QUOTE NUMBER NT$1 QUOTE RBRACE 
             {
               Object RESULT =null;
+              // propagate RESULT from NT$1
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int nleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Integer n = (Integer)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("E",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // EPSILON ::= 
+          case 5: // S ::= error 
             {
               Object RESULT =null;
-
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EPSILON",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+		 parser.defineError("Sintaxe inválida!"); 
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 

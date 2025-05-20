@@ -8,15 +8,23 @@ package br.edu.ifgoiano;
 /** CUP generated class containing symbol constants. */
 public class Sym {
   /* terminals */
-  public static final int b = 3;
-  public static final int a = 2;
+  public static final int LBRACE = 3;
+  public static final int QUOTE = 6;
   public static final int error = 1;
+  public static final int NUMBER = 2;
+  public static final int COLON = 7;
+  public static final int RBRACE = 4;
   public static final int EOF = 0;
+  public static final int AGE = 5;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "a",
-  "b"
+  "NUMBER",
+  "LBRACE",
+  "RBRACE",
+  "AGE",
+  "QUOTE",
+  "COLON"
   };
 }
 

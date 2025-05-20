@@ -5,6 +5,7 @@
 package br.edu.ifgoiano;
 
 import java_cup.runtime.Symbol;
+import br.edu.ifgoiano.except.ListError;
 
 
 @SuppressWarnings("fallthrough")
@@ -63,9 +64,10 @@ class Yylex implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\12\0\4\1\41\0\1\2\61\0\1\3\1\4\13\0"+
-    "\1\2\3\0\3\2\20\0\1\1\u01a2\0\2\1\326\0"+
-    "\u0100\1";
+    "\11\0\2\1\2\2\1\1\22\0\1\1\1\0\1\3"+
+    "\15\0\12\4\1\5\46\0\1\6\2\0\1\7\1\10"+
+    "\3\0\1\11\21\0\1\12\1\0\1\13\7\0\1\2"+
+    "\u01a2\0\2\2\326\0\u0100\2";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -92,10 +94,11 @@ class Yylex implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4";
+    "\1\0\1\1\1\2\1\3\1\4\1\5\1\1\1\6"+
+    "\1\7\3\0\1\10";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[5];
+    int [] result = new int[13];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -120,10 +123,11 @@ class Yylex implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\5\0\5\0\5\0\5";
+    "\0\0\0\14\0\30\0\14\0\44\0\14\0\60\0\14"+
+    "\0\14\0\74\0\110\0\124\0\14";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[5];
+    int [] result = new int[13];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -146,10 +150,12 @@ class Yylex implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\0\1\3\1\4\1\5\5\0";
+    "\1\2\1\3\1\0\1\4\1\5\1\6\3\2\1\7"+
+    "\1\10\1\11\15\0\1\3\16\0\1\5\16\0\1\12"+
+    "\12\0\1\13\14\0\1\14\14\0\1\15\3\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[10];
+    int [] result = new int[96];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -192,10 +198,11 @@ class Yylex implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\4\11";
+    "\1\0\1\11\1\1\1\11\1\1\1\11\1\1\2\11"+
+    "\3\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[5];
+    int [] result = new int[13];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -270,6 +277,38 @@ class Yylex implements java_cup.runtime.Scanner {
 
   /** Whether the user-EOF-code has already been executed. */
   private boolean zzEOFDone;
+
+  /* user code: */
+    private ListError listError;
+    
+    public Yylex(java.io.FileReader in, ListError listError) {
+        this(in);
+        this.listError = listError;
+    }
+    
+    public ListError getListError() {
+        return listError;
+    }
+    
+    public void defineError(int line, int column, String text) {
+        this.listError.defineError(line, column, text);
+    }
+    
+    public void defineError(int linha, int coluna) {
+        this.listError.defineError(linha, coluna);
+    }
+    
+    public void defineError(String texto) {
+        this.listError.defineError(texto);
+    }
+    
+    public Symbol createSymbol(int token, Object value) {
+        return new Symbol(token, yyline, yycolumn, value);
+    }
+    
+    public Symbol createSymbol(int token) {
+        return this.createSymbol(token, null);
+    }
 
 
   /**
@@ -692,31 +731,51 @@ class Yylex implements java_cup.runtime.Scanner {
         zzAtEOF = true;
             zzDoEOF();
               {
-                return new Symbol(Sym.EOF);
+                return createSymbol(Sym.EOF);
               }
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { return new Symbol(Sym.error);
+            { this.defineError(yyline, yycolumn, "Caractere desconhecido: " + yytext());
             }
           // fall through
-          case 5: break;
+          case 9: break;
           case 2:
-            { /*VAZIO*/
+            { /* Ignorar espaços, quebras de linha, etc */
             }
           // fall through
-          case 6: break;
+          case 10: break;
           case 3:
-            { return new Symbol(Sym.a);
+            { return createSymbol(Sym.QUOTE);
             }
           // fall through
-          case 7: break;
+          case 11: break;
           case 4:
-            { return new Symbol(Sym.b);
+            { return createSymbol(Sym.NUMBER, Integer.valueOf(yytext()));
             }
           // fall through
-          case 8: break;
+          case 12: break;
+          case 5:
+            { return createSymbol(Sym.COLON);
+            }
+          // fall through
+          case 13: break;
+          case 6:
+            { return createSymbol(Sym.LBRACE);
+            }
+          // fall through
+          case 14: break;
+          case 7:
+            { return createSymbol(Sym.RBRACE);
+            }
+          // fall through
+          case 15: break;
+          case 8:
+            { return createSymbol(Sym.AGE);
+            }
+          // fall through
+          case 16: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

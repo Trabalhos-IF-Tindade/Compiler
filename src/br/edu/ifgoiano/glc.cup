@@ -1,9 +1,39 @@
 package br.edu.ifgoiano;
+
 import java_cup.runtime.*;
 
-terminal a, b;
-non terminal S, E, EPSILON;
+parser code {:
+  public void syntax_error(Symbol s){
+    this.defineError(s.left, s.right);
+  }
+  public void defineError(int line, int column, String text) {
+    Yylex scanner = (Yylex) this.getScanner();
+  scanner.defineError(line, column, text);
+  }
+  public void defineError(int linha, int coluna){
+    Yylex scanner = (Yylex) this.getScanner();
+    scanner.defineError(linha, coluna);
+  }
+  public void defineError(String text) {
+    Yylex scanner = (Yylex) this.getScanner();
+    scanner.defineError(text);
+  }
+:};
 
-S ::= a b E a;
-E ::= EPSILON | b b E;
-EPSILON ::= ;
+terminal Integer NUMBER;
+terminal LBRACE, RBRACE, AGE, QUOTE, COLON;
+non terminal S;
+
+S ::= LBRACE AGE COLON QUOTE
+ NUMBER:n {:
+  if(n < 0 || n > 120)
+    parser.defineError(nleft, nright, "Idade inválida");
+ :}
+ QUOTE RBRACE |
+ S LBRACE AGE COLON QUOTE
+ NUMBER:n {:
+  if(n < 0 || n > 120) 
+    parser.defineError(nleft, nright, "Idade inválida");
+ :}
+ QUOTE RBRACE |
+ error {: parser.defineError("Sintaxe inválida!"); :}; 
