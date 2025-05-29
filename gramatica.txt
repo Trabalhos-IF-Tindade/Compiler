@@ -1,0 +1,9 @@
+S -> GRAPH: TYPE
+TYPE -> directed C | undirected D
+C-> vertex ID C | E
+E-> edge ID -> ID E | C | G
+D-> vertex ID D | F
+F-> edge<id> -- <id> F | D | G
+G-> print adjacency | ∈
+ID -> lexema
+
