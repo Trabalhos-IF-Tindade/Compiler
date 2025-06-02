@@ -2,14 +2,20 @@ package br.edu.ifgoiano;
 
 import java_cup.runtime.Symbol;
 import br.edu.ifgoiano.except.ListError;
+//import br.edu.ifgoiano.sym;
 
 %%
 %cup
 %unicode
 %line
 %column
+%class Yylex
+%public
+%caseless
 
 %{
+
+
     private ListError listError;
     
     public Yylex(java.io.FileReader in, ListError listError) {
@@ -42,19 +48,31 @@ import br.edu.ifgoiano.except.ListError;
     }
 %}
 
+
 digit = [0-9]
 number = {digit}+
 
 %%
-{number}    { return createSymbol(Sym.NUMBER, Integer.valueOf(yytext())); }
-"{"         { return createSymbol(Sym.LBRACE); }
-"}"         { return createSymbol(Sym.RBRACE); }
-":"         { return createSymbol(Sym.COLON); }
-"idade"     { return createSymbol(Sym.AGE); }
-"\""        { return createSymbol(Sym.QUOTE); }
 
-[\t\r\n ]+  { /* Ignorar espaços, quebras de linha, etc */ }
+"graph"        { return createSymbol(Sym.GRAPH, yytext()); }
+"vertex"       { return createSymbol(Sym.VERTEX, yytext()); }
+"edge"         { return createSymbol(Sym.EDGE, yytext()); }
+"print"        { return createSymbol(Sym.PRINT, yytext()); }
+"adjacency"    { return createSymbol(Sym.ADJACENCY, yytext()); }
+"directed"     { return createSymbol(Sym.DIRECTED, yytext()); }
+"undirected"   { return createSymbol(Sym.UNDIRECTED, yytext()); }
 
-.           { this.defineError(yyline, yycolumn, "Caractere desconhecido: " + yytext()); }
+"->"            { return createSymbol(Sym.ARROW, yytext()); }
+"--"            { return createSymbol(Sym.DASH, yytext()); }
+":"            { return createSymbol(Sym.COLON, yytext()); }  
 
-<<EOF>>     { return createSymbol(Sym.EOF); }
+[a-zA-Z][a-zA-Z0-9_]*  { return createSymbol(Sym.ID, yytext()); }
+
+[\r\n\t ]+             { /* ignora espaços */ }
+
+. {
+    defineError(yyline + 1, yycolumn + 1, "Erro léxico: símbolo desconhecido '" + yytext() + "'");
+    return createSymbol(Sym.ERROR);
+}
+
+<<EOF>> { return createSymbol(Sym.EOF); }

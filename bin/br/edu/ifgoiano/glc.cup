@@ -2,6 +2,7 @@ package br.edu.ifgoiano;
 
 import java_cup.runtime.*;
 
+// tartamento de erros
 parser code {:
   public void syntax_error(Symbol s){
     this.defineError(s.left, s.right);
@@ -20,20 +21,36 @@ parser code {:
   }
 :};
 
-terminal Integer NUMBER;
-terminal LBRACE, RBRACE, AGE, QUOTE, COLON;
-non terminal S;
 
-S ::= LBRACE AGE COLON QUOTE
- NUMBER:n {:
-  if(n < 0 || n > 120)
-    parser.defineError(nleft, nright, "Idade inválida");
- :}
- QUOTE RBRACE |
- S LBRACE AGE COLON QUOTE
- NUMBER:n {:
-  if(n < 0 || n > 120) 
-    parser.defineError(nleft, nright, "Idade inválida");
- :}
- QUOTE RBRACE |
- error {: parser.defineError("Sintaxe inválida!"); :}; 
+// TERMINAIS
+terminal GRAPH, VERTEX, EDGE, PRINT, ADJACENCY, DIRECTED, UNDIRECTED;
+terminal ARROW, DASH, COLON, ERROR;
+terminal ID;
+
+// NÃO-TERMINAIS
+non terminal S, TYPE, VERTICES, EDGES, COMMANDS;
+
+// REGRA INICIAL
+start with S;
+
+S ::= GRAPH COLON TYPE ;
+
+TYPE ::= DIRECTED VERTICES EDGES COMMANDS
+       | UNDIRECTED VERTICES EDGES COMMANDS
+       ;
+
+VERTICES ::= VERTEX ID VERTICES
+           | /* vazio */
+           ;
+
+EDGES ::= EDGE ID ARROW ID EDGES     // para grafos direcionados
+        | EDGE ID DASH ID EDGES      // para grafos não direcionados
+        | /* vazio */
+        ;
+
+COMMANDS ::= PRINT ADJACENCY
+           | /* vazio */
+           ;
+
+
+

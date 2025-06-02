@@ -1,1 +1,9 @@
-{idade: "15"}
+GRAPH:
+ directed
+ vertex A
+ vertex B
+ vertex C
+ edge A -> B
+ edge B -> C
+ edge C -> A
+ print adjacency 

@@ -7,3 +7,6 @@ F-> edge<id> -- <id> F | D | G
 G-> print adjacency | ∈
 ID -> lexema
 
+java -cp "lib/*" java_cup.Main -parser Parser -symbols Sym -destdir src/br/edu/ifgoiano src/br/edu/ifgoiano/glc.cup
+javac -cp "lib/*" -d bin src/br/edu/ifgoiano/*.java src/br/edu/ifgoiano/except/*.java
+java -cp "lib/*;bin" br.edu.ifgoiano.App
