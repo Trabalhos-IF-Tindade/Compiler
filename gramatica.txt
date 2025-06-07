@@ -10,27 +10,5 @@ ID -> lexema
 java -cp "lib/*" java_cup.Main -parser Parser -symbols Sym -destdir src/br/edu/ifgoiano src/br/edu/ifgoiano/glc.cup
 javac -cp "lib/*" -d bin src/br/edu/ifgoiano/*.java src/br/edu/ifgoiano/except/*.java src/br/edu/ifgoiano/grath/*.java 
 java -cp "lib/*;bin" br.edu.ifgoiano.App
+java -cp "lib/*;bin" br.edu.ifgoiano.grath.GeraGrafo
 
-|--src
-    |--br
-       |--edu   
-           |--ifgoiano
-                 |--exept
-                      |--Error.java
-                      |--ListError.java
-                 |--grath
-                      |--Grafo.java
-                 |--input
-                      |--gramatica
-                      |*aqui deve estar o arquivo da minha entrada*
-                 |--output
-                       |--*aqui deve estar a minha da minha tabela de adjacencia*
-                 |--App.java
-                 |--glc.cup
-                 |--lexical_analyzer.flex
-                 |--Parser.java
-                 |--RunParser.java
-                 |--RunScanner.java
-                 |--Sym.java
-                 |--Yylex.java
-                 |--Yylex.java~

@@ -28,18 +28,8 @@ public class App {
      */
 
     try {
-      // 1) Monta o grafo e gera o arquivo de entrada
-      Grafo grafoOrigem = new Grafo(false, true);
-      grafoOrigem.adicionarAresta("A", "C", 1);
-      grafoOrigem.adicionarAresta("B", "C", 1);
-      grafoOrigem.adicionarAresta("C", "D", 1);
-      grafoOrigem.adicionarAresta("C", "E", 1);
-      grafoOrigem.adicionarAresta("D", "E", 1);
-      grafoOrigem.gerar_entrada(); 
-
       String inputPath = "src\\br\\edu\\ifgoiano\\input\\grafo_entrada.txt";
 
-      // 2) PRIMEIRO PASSO: imprime todos os tokens + lexemas
       System.out.println("=== Lista de tokens lidos pelo scanner ===");
       ListError lexErrors = new ListError();
       try (FileReader fr1 = new FileReader(inputPath)) {
@@ -59,7 +49,6 @@ public class App {
         } while (tok.sym != Sym.EOF);
       }
 
-      // 3) SEGUNDO PASSO: roda o parser sobre o mesmo arquivo
       ListError parseErrors = new ListError();
       try (FileReader fr2 = new FileReader(inputPath)) {
         Yylex scanner = new Yylex(fr2, parseErrors);
