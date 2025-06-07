@@ -5,6 +5,7 @@
 
 package br.edu.ifgoiano;
 
+import br.edu.ifgoiano.grath.Grafo;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
 
@@ -31,11 +32,20 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
+<<<<<<< HEAD
     "\000\015\000\002\002\004\000\002\002\005\000\002\002" +
     "\003\000\002\003\006\000\002\003\006\000\002\003\003" +
     "\000\002\004\005\000\002\004\002\000\002\005\007\000" +
     "\002\005\007\000\002\005\002\000\002\006\004\000\002" +
     "\006\002" });
+=======
+    "\000\020\000\002\002\004\000\002\002\005\000\002\007" +
+    "\002\000\002\003\007\000\002\010\002\000\002\003\007" +
+    "\000\002\011\002\000\002\004\006\000\002\004\002\000" +
+    "\002\012\002\000\002\005\010\000\002\013\002\000\002" +
+    "\005\010\000\002\005\002\000\002\006\004\000\002\006" +
+    "\002" });
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -43,6 +53,7 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
+<<<<<<< HEAD
     "\000\035\000\006\003\004\004\006\001\002\000\004\002" +
     "\uffff\001\002\000\004\002\037\001\002\000\004\015\007" +
     "\001\002\000\010\003\011\011\010\012\012\001\002\000" +
@@ -61,6 +72,29 @@ public class Parser extends java_cup.runtime.lr_parser {
     "\ufffb\007\ufffb\001\002\000\010\002\ufff7\006\016\007\ufff7" +
     "\001\002\000\006\002\ufff5\007\020\001\002\000\004\002" +
     "\ufffe\001\002\000\004\002\001\001\002" });
+=======
+    "\000\040\000\004\004\005\001\002\000\004\002\042\001" +
+    "\002\000\004\005\006\001\002\000\006\006\007\007\010" +
+    "\001\002\000\012\002\uffff\010\uffff\011\uffff\012\uffff\001" +
+    "\002\000\012\002\ufffd\010\ufffd\011\ufffd\012\ufffd\001\002" +
+    "\000\004\002\000\001\002\000\012\002\ufff9\010\013\011" +
+    "\ufff9\012\ufff9\001\002\000\004\017\033\001\002\000\010" +
+    "\002\ufff4\011\015\012\ufff4\001\002\000\004\017\022\001" +
+    "\002\000\006\002\ufff2\012\017\001\002\000\004\013\021" +
+    "\001\002\000\004\002\ufffc\001\002\000\004\002\ufff3\001" +
+    "\002\000\006\014\024\015\023\001\002\000\004\017\030" +
+    "\001\002\000\004\017\025\001\002\000\010\002\ufff8\011" +
+    "\ufff8\012\ufff8\001\002\000\010\002\ufff4\011\015\012\ufff4" +
+    "\001\002\000\006\002\ufff7\012\ufff7\001\002\000\010\002" +
+    "\ufff6\011\ufff6\012\ufff6\001\002\000\010\002\ufff4\011\015" +
+    "\012\ufff4\001\002\000\006\002\ufff5\012\ufff5\001\002\000" +
+    "\012\002\ufffb\010\ufffb\011\ufffb\012\ufffb\001\002\000\012" +
+    "\002\ufff9\010\013\011\ufff9\012\ufff9\001\002\000\010\002" +
+    "\ufffa\011\ufffa\012\ufffa\001\002\000\012\002\ufff9\010\013" +
+    "\011\ufff9\012\ufff9\001\002\000\010\002\ufff4\011\015\012" +
+    "\ufff4\001\002\000\006\002\ufff2\012\017\001\002\000\004" +
+    "\002\ufffe\001\002\000\004\002\001\001\002" });
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -68,6 +102,7 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
+<<<<<<< HEAD
     "\000\035\000\004\002\004\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\004\003\012\001\001" +
     "\000\004\004\033\001\001\000\002\001\001\000\004\004" +
@@ -79,6 +114,21 @@ public class Parser extends java_cup.runtime.lr_parser {
     "\001\001\000\002\001\001\000\004\004\032\001\001\000" +
     "\002\001\001\000\004\005\034\001\001\000\004\006\035" +
     "\001\001\000\002\001\001\000\002\001\001" });
+=======
+    "\000\040\000\004\002\003\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\003\010\001\001\000\004\007\035" +
+    "\001\001\000\004\010\011\001\001\000\002\001\001\000" +
+    "\004\004\013\001\001\000\002\001\001\000\004\005\015" +
+    "\001\001\000\002\001\001\000\004\006\017\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\012" +
+    "\025\001\001\000\004\005\026\001\001\000\002\001\001" +
+    "\000\004\013\030\001\001\000\004\005\031\001\001\000" +
+    "\002\001\001\000\004\011\033\001\001\000\004\004\034" +
+    "\001\001\000\002\001\001\000\004\004\036\001\001\000" +
+    "\004\005\037\001\001\000\004\006\040\001\001\000\002" +
+    "\001\001\000\002\001\001" });
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -117,21 +167,30 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
 
-  public void syntax_error(Symbol s){
-    this.defineError(s.left, s.right);
-  }
-  public void defineError(int line, int column, String text) {
-    Yylex scanner = (Yylex) this.getScanner();
-  scanner.defineError(line, column, text);
-  }
-  public void defineError(int linha, int coluna){
-    Yylex scanner = (Yylex) this.getScanner();
-    scanner.defineError(linha, coluna);
-  }
-  public void defineError(String text) {
-    Yylex scanner = (Yylex) this.getScanner();
-    scanner.defineError(text);
-  }
+    // tratamento de erros
+    public void syntax_error(Symbol s) {
+        this.defineError(s.left, s.right);
+    }
+    public void defineError(int line, int column, String text) {
+        Yylex scanner = (Yylex) this.getScanner();
+        scanner.defineError(line, column, text);
+    }
+    public void defineError(int linha, int coluna) {
+        Yylex scanner = (Yylex) this.getScanner();
+        scanner.defineError(linha, coluna);
+    }
+    public void defineError(String text) {
+        Yylex scanner = (Yylex) this.getScanner();
+        scanner.defineError(text);
+    }
+
+    // campo para construir o grafo
+    private Grafo grafo;
+
+    // expõe o grafo para uso externo (no seu main)
+    public Grafo getGrafo() {
+        return grafo;
+    }
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -182,6 +241,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 2: // S ::= error 
             {
               Object RESULT =null;
@@ -194,23 +254,36 @@ class CUP$Parser$actions {
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // TYPE ::= DIRECTED VERTICES EDGES COMMANDS 
+=======
+          case 2: // NT$0 ::= 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+         // o segundo parâmetro true ativa seu flag de "print adjacency"
+         parser.grafo = new Grafo(true, true);
+      
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$0",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 4: // TYPE ::= UNDIRECTED VERTICES EDGES COMMANDS 
+=======
+          case 3: // TYPE ::= DIRECTED NT$0 VERTICES EDGES COMMANDS 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
+              // propagate RESULT from NT$0
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 5: // TYPE ::= error 
             {
               Object RESULT =null;
@@ -221,15 +294,63 @@ class CUP$Parser$actions {
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 6: // VERTICES ::= VERTEX ID VERTICES 
+=======
+          case 4: // NT$1 ::= 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("VERTICES",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+         parser.grafo = new Grafo(false, true);
+      
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$1",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 7: // VERTICES ::= 
+=======
+          case 5: // TYPE ::= UNDIRECTED NT$1 VERTICES EDGES COMMANDS 
+            {
+              Object RESULT =null;
+              // propagate RESULT from NT$1
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // NT$2 ::= 
+            {
+              Object RESULT =null;
+		int ileft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int iright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String i = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+
+        parser.grafo.adicionarVertice(i);
+      
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$2",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // VERTICES ::= VERTEX ID NT$2 VERTICES 
+            {
+              Object RESULT =null;
+              // propagate RESULT from NT$2
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int ileft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int iright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		String i = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("VERTICES",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // VERTICES ::= 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
 
@@ -238,25 +359,87 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 8: // EDGES ::= EDGE ID ARROW ID EDGES 
+=======
+          case 9: // NT$3 ::= 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
+		int vleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		String v = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int wleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int wright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String w = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EDGES",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+        parser.grafo.adicionarAresta(v, w, 1);
+      
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$3",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 9: // EDGES ::= EDGE ID DASH ID EDGES 
+=======
+          case 10: // EDGES ::= EDGE ID ARROW ID NT$3 EDGES 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
+              // propagate RESULT from NT$3
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int vleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).right;
+		String v = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		int wleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int wright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		String w = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EDGES",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EDGES",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 10: // EDGES ::= 
+=======
+          case 11: // NT$4 ::= 
+            {
+              Object RESULT =null;
+		int vleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		String v = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int wleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int wright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String w = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+
+        parser.grafo.adicionarAresta(v, w, 1);
+      
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("NT$4",9, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // EDGES ::= EDGE ID DASH ID NT$4 EDGES 
+            {
+              Object RESULT =null;
+              // propagate RESULT from NT$4
+                RESULT = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int vleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).right;
+		String v = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		int wleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int wright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		String w = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EDGES",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // EDGES ::= 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
 
@@ -265,16 +448,27 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 11: // COMMANDS ::= PRINT ADJACENCY 
+=======
+          case 14: // COMMANDS ::= PRINT ADJACENCY 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
-
+		
+                // dispara a gravação só se esse comando existir no input
+                parser.grafo.salvarMatrizAdjacenciaEmArquivo("src/br/edu/ifgoiano/output/matriz_adjacencia.txt");
+              
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("COMMANDS",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 12: // COMMANDS ::= 
+=======
+          case 15: // COMMANDS ::= 
+>>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
             {
               Object RESULT =null;
 

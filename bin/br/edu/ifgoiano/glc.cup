@@ -1,30 +1,40 @@
 package br.edu.ifgoiano;
 
+import br.edu.ifgoiano.grath.Grafo;
 import java_cup.runtime.*;
 
 parser code {:
-  public void syntax_error(Symbol s){
-    this.defineError(s.left, s.right);
-  }
-  public void defineError(int line, int column, String text) {
-    Yylex scanner = (Yylex) this.getScanner();
-  scanner.defineError(line, column, text);
-  }
-  public void defineError(int linha, int coluna){
-    Yylex scanner = (Yylex) this.getScanner();
-    scanner.defineError(linha, coluna);
-  }
-  public void defineError(String text) {
-    Yylex scanner = (Yylex) this.getScanner();
-    scanner.defineError(text);
-  }
+    // tratamento de erros
+    public void syntax_error(Symbol s) {
+        this.defineError(s.left, s.right);
+    }
+    public void defineError(int line, int column, String text) {
+        Yylex scanner = (Yylex) this.getScanner();
+        scanner.defineError(line, column, text);
+    }
+    public void defineError(int linha, int coluna) {
+        Yylex scanner = (Yylex) this.getScanner();
+        scanner.defineError(linha, coluna);
+    }
+    public void defineError(String text) {
+        Yylex scanner = (Yylex) this.getScanner();
+        scanner.defineError(text);
+    }
+
+    // campo para construir o grafo
+    private Grafo grafo;
+
+    // expõe o grafo para uso externo (no seu main)
+    public Grafo getGrafo() {
+        return grafo;
+    }
 :};
 
-
 // TERMINAIS
-terminal GRAPH, VERTEX, EDGE, PRINT, ADJACENCY, DIRECTED, UNDIRECTED;
-terminal ARROW, DASH, COLON, ERROR;
-terminal ID;
+terminal GRAPH, COLON, DIRECTED, UNDIRECTED,
+         VERTEX, EDGE, PRINT, ADJACENCY,
+         ARROW, DASH, ERROR;
+terminal String ID;
 
 // NÃO-TERMINAIS
 non terminal S, TYPE, VERTICES, EDGES, COMMANDS;
@@ -38,20 +48,49 @@ S ::= GRAPH COLON TYPE
       :}
     ;
 
-TYPE ::= DIRECTED VERTICES EDGES COMMANDS
-       | UNDIRECTED VERTICES EDGES COMMANDS
+TYPE ::=
+    DIRECTED
+      {:
+         // o segundo parâmetro true ativa seu flag de "print adjacency"
+         parser.grafo = new Grafo(true, true);
+      :}
+    VERTICES EDGES COMMANDS
+  | UNDIRECTED
+      {:
+         parser.grafo = new Grafo(false, true);
+      :}
+    VERTICES EDGES COMMANDS
        | error {: parser.defineError("Tipo de grafo inválido. Use 'directed' ou 'undirected'"); :}
-       ;
+  ;
 
-VERTICES ::= VERTEX ID VERTICES
-           | /* vazio */
-           ;
 
-EDGES ::= EDGE ID ARROW ID EDGES     // para grafos direcionados
-        | EDGE ID DASH ID EDGES      // para grafos não direcionados
-        | /* vazio */
-        ;
+
+VERTICES ::=
+    VERTEX ID:i
+      {:
+        parser.grafo.adicionarVertice(i);
+      :}
+    VERTICES
+  | /* vazio */
+  ;
+
+EDGES ::=
+    EDGE ID:v ARROW ID:w
+      {:
+        parser.grafo.adicionarAresta(v, w, 1);
+      :}
+    EDGES
+  | EDGE ID:v DASH ID:w
+      {:
+        parser.grafo.adicionarAresta(v, w, 1);
+      :}
+    EDGES
+  | /* vazio */
+  ;
 
 COMMANDS ::= PRINT ADJACENCY
            | /* vazio */
            ;
+
+
+

@@ -8,5 +8,7 @@ G-> print adjacency | ∈
 ID -> lexema
 
 java -cp "lib/*" java_cup.Main -parser Parser -symbols Sym -destdir src/br/edu/ifgoiano src/br/edu/ifgoiano/glc.cup
-javac -cp "lib/*" -d bin src/br/edu/ifgoiano/*.java src/br/edu/ifgoiano/except/*.java
+javac -cp "lib/*" -d bin src/br/edu/ifgoiano/*.java src/br/edu/ifgoiano/except/*.java src/br/edu/ifgoiano/grath/*.java 
 java -cp "lib/*;bin" br.edu.ifgoiano.App
+java -cp "lib/*;bin" br.edu.ifgoiano.grath.GeraGrafo
+

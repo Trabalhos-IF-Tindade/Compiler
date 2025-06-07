@@ -1,0 +1,9 @@
+GRAPH:
+	undirected
+	vertex A
+	vertex B
+	vertex C
+	edge  A -- C 
+	edge  A -- B 
+	edge  B -- C
+	print adjacency

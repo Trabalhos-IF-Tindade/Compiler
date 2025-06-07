@@ -1,0 +1,12 @@
+GRAPH:
+	undirected
+	vertex A;
+	vertex B
+	vertex C
+	vertex D
+	vertex E
+	edge  A -- C 
+	edge  B -- C 
+	edge  C -- D 
+	edge  C -- E 
+	edge  D -- E 
