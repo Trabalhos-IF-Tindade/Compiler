@@ -71,8 +71,10 @@ number = {digit}+
 [\r\n\t ]+             { /* ignora espaços */ }
 
 . {
-    defineError(yyline + 1, yycolumn + 1, "Erro léxico: símbolo desconhecido '" + yytext() + "'");
-    return createSymbol(Sym.ERROR);
+    String texto = yytext();
+   defineError(yyline + 1, yycolumn + 1,"Erro léxico: símbolo desconhecido '" + texto + "'");
+   // devolve Sym.ERROR carregando o lexema
+   return createSymbol(Sym.ERROR, texto);
 }
 
 <<EOF>> { return createSymbol(Sym.EOF); }

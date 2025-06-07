@@ -1,6 +1,3 @@
 /lib/
-# Ignorar todos os arquivos .class em qualquer pasta
 *.class
-
-# (Opcional) Ignorar toda a pasta bin/ por conveniência
 /bin/

@@ -3,50 +3,80 @@ package br.edu.ifgoiano;
 import java.io.FileReader;
 import java.nio.file.Paths;
 import br.edu.ifgoiano.except.ListError;
+import br.edu.ifgoiano.grath.Grafo;
 import java_cup.runtime.Symbol;
-
 
 public class App {
   public static void main(String[] args) throws Exception {
-    /* String rootPath = Paths.get("").toAbsolutePath().toString();
-    String inputFilePath = rootPath + "\\input.txt";
-    ListError listError = new ListError();
-    FileReader in = new FileReader(inputFilePath);
-    Yylex scanner = new Yylex(in, listError);
-    Parser parser = new Parser(scanner);
-    try {
-      parser.parse();
-    } catch (Exception e) {
-      System.out.print("");
-    }
-    if (listError.hasErrors()) {
-      listError.logErrors();
-    } else {
-      System.out.println("Sintaxe correta!");
-    } */
+    /*
+     * String rootPath = Paths.get("").toAbsolutePath().toString();
+     * String inputFilePath = rootPath + "\\input.txt";
+     * ListError listError = new ListError();
+     * FileReader in = new FileReader(inputFilePath);
+     * Yylex scanner = new Yylex(in, listError);
+     * Parser parser = new Parser(scanner);
+     * try {
+     * parser.parse();
+     * } catch (Exception e) {
+     * System.out.print("");
+     * }
+     * if (listError.hasErrors()) {
+     * listError.logErrors();
+     * } else {
+     * System.out.println("Sintaxe correta!");
+     * }
+     */
 
     try {
-            ListError listError = new ListError();
-            FileReader file = new FileReader("input.txt");
-            Yylex scanner = new Yylex(file, listError);
+      // 1) Monta o grafo e gera o arquivo de entrada
+      Grafo grafoOrigem = new Grafo(false, true);
+      grafoOrigem.adicionarAresta("A", "C", 1);
+      grafoOrigem.adicionarAresta("B", "C", 1);
+      grafoOrigem.adicionarAresta("C", "D", 1);
+      grafoOrigem.adicionarAresta("C", "E", 1);
+      grafoOrigem.adicionarAresta("D", "E", 1);
+      grafoOrigem.gerar_entrada(); 
 
-            Symbol token;
-            do {
-                token = scanner.next_token();
-                String tokenName = Sym.terminalNames[token.sym];
-                String lexema = token.value != null ? token.value.toString() : "<vazio>";
-                System.out.println("Token: " + tokenName + " | Lexema: " + lexema);
-            } while (token.sym != Sym.EOF);
+      String inputPath = "src\\br\\edu\\ifgoiano\\input\\grafo_entrada.txt";
 
-            if (listError.hasErrors()) {
-                System.out.println("Erros léxicos encontrados:");
-                listError.logErrors();
-            } else {
-                System.out.println("Análise léxica finalizada sem erros.");
-            }
+      // 2) PRIMEIRO PASSO: imprime todos os tokens + lexemas
+      System.out.println("=== Lista de tokens lidos pelo scanner ===");
+      ListError lexErrors = new ListError();
+      try (FileReader fr1 = new FileReader(inputPath)) {
+        Yylex lexPrinter = new Yylex(fr1, lexErrors);
+        Symbol tok;
+        do {
+          tok = lexPrinter.next_token();
+          String name = Sym.terminalNames[tok.sym];
+          String lex = tok.value != null ? tok.value.toString() : "<vazio>";
+          System.out.printf("Token: %-12s | Lexema: %s%n", name, lex);
 
-        } catch (Exception e) {
-            System.err.println("Erro ao executar scanner: " + e.getMessage());
+          if (tok.sym == Sym.ERROR) {
+            System.err.println(">> Erro léxico encontrado.");
+            lexErrors.logErrors();
+            return;  
         }
+        } while (tok.sym != Sym.EOF);
+      }
+
+      // 3) SEGUNDO PASSO: roda o parser sobre o mesmo arquivo
+      ListError parseErrors = new ListError();
+      try (FileReader fr2 = new FileReader(inputPath)) {
+        Yylex scanner = new Yylex(fr2, parseErrors);
+        Parser parser = new Parser(scanner);
+        parser.parse();
+        if (parseErrors.hasErrors()) {
+          System.err.println("Erros durante o parse:");
+          parseErrors.logErrors();
+        } else {
+          System.out.println("Processamento concluído com sucesso.");
+          System.out.println("  • Entrada: " + inputPath);
+          System.out.println("  • Matriz:  src/br/edu/ifgoiano/output/matriz_adjacencia.txt");
+        }
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
