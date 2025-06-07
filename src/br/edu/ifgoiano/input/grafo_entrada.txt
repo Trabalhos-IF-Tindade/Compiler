@@ -3,7 +3,8 @@ GRAPH:
 	vertex A
 	vertex B
 	vertex C
+	vertex E
 	edge  A -- C 
 	edge  A -- B 
-	edge  B -- C
+	edge  A -- E 
 	print adjacency

@@ -1,4 +1,4 @@
-package br.edu.ifgoiano.grath;
+package br.edu.ifgoiano.graph;
 
 import java.io.BufferedWriter;
 import java.io.File;

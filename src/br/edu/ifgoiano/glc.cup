@@ -1,6 +1,6 @@
 package br.edu.ifgoiano;
 
-import br.edu.ifgoiano.grath.Grafo;
+import br.edu.ifgoiano.graph.Grafo;
 import java_cup.runtime.*;
 
 parser code {:

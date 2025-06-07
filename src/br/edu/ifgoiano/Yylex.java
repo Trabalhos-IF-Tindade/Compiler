@@ -336,9 +336,6 @@ public class Yylex implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-    yyline = 1;
-    yycolumn = 1;
-
     private ListError listError;
     
     public Yylex(java.io.FileReader in, ListError listError) {
@@ -797,8 +794,10 @@ public class Yylex implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { defineError(yyline + 1, yycolumn + 1, "Erro léxico: símbolo desconhecido '" + yytext() + "'");
-                    return createSymbol(Sym.ERROR);
+            { String texto = yytext();
+   defineError(yyline + 1, yycolumn + 1,"Erro léxico: símbolo desconhecido '" + texto + "'");
+   // devolve Sym.ERROR carregando o lexema
+   return createSymbol(Sym.ERROR, texto);
             }
           // fall through
           case 16: break;

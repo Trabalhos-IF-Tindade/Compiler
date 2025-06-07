@@ -5,7 +5,7 @@
 
 package br.edu.ifgoiano;
 
-import br.edu.ifgoiano.grath.Grafo;
+import br.edu.ifgoiano.graph.Grafo;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
 
@@ -32,20 +32,12 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-<<<<<<< HEAD
-    "\000\015\000\002\002\004\000\002\002\005\000\002\002" +
-    "\003\000\002\003\006\000\002\003\006\000\002\003\003" +
-    "\000\002\004\005\000\002\004\002\000\002\005\007\000" +
-    "\002\005\007\000\002\005\002\000\002\006\004\000\002" +
-    "\006\002" });
-=======
-    "\000\020\000\002\002\004\000\002\002\005\000\002\007" +
-    "\002\000\002\003\007\000\002\010\002\000\002\003\007" +
-    "\000\002\011\002\000\002\004\006\000\002\004\002\000" +
-    "\002\012\002\000\002\005\010\000\002\013\002\000\002" +
-    "\005\010\000\002\005\002\000\002\006\004\000\002\006" +
-    "\002" });
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+    "\000\022\000\002\002\004\000\002\002\005\000\002\002" +
+    "\003\000\002\007\002\000\002\003\007\000\002\010\002" +
+    "\000\002\003\007\000\002\003\003\000\002\011\002\000" +
+    "\002\004\006\000\002\004\002\000\002\012\002\000\002" +
+    "\005\010\000\002\013\002\000\002\005\010\000\002\005" +
+    "\002\000\002\006\004\000\002\006\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -53,48 +45,29 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-<<<<<<< HEAD
-    "\000\035\000\006\003\004\004\006\001\002\000\004\002" +
-    "\uffff\001\002\000\004\002\037\001\002\000\004\015\007" +
-    "\001\002\000\010\003\011\011\010\012\012\001\002\000" +
-    "\012\002\ufffa\005\014\006\ufffa\007\ufffa\001\002\000\004" +
-    "\002\ufffc\001\002\000\012\002\ufffa\005\014\006\ufffa\007" +
-    "\ufffa\001\002\000\004\002\000\001\002\000\004\017\032" +
-    "\001\002\000\010\002\ufff7\006\016\007\ufff7\001\002\000" +
-    "\004\017\023\001\002\000\006\002\ufff5\007\020\001\002" +
-    "\000\004\010\022\001\002\000\004\002\ufffd\001\002\000" +
-    "\004\002\ufff6\001\002\000\006\013\025\014\024\001\002" +
-    "\000\004\017\030\001\002\000\004\017\026\001\002\000" +
-    "\010\002\ufff7\006\016\007\ufff7\001\002\000\006\002\ufff9" +
-    "\007\ufff9\001\002\000\010\002\ufff7\006\016\007\ufff7\001" +
-    "\002\000\006\002\ufff8\007\ufff8\001\002\000\012\002\ufffa" +
-    "\005\014\006\ufffa\007\ufffa\001\002\000\010\002\ufffb\006" +
-    "\ufffb\007\ufffb\001\002\000\010\002\ufff7\006\016\007\ufff7" +
-    "\001\002\000\006\002\ufff5\007\020\001\002\000\004\002" +
-    "\ufffe\001\002\000\004\002\001\001\002" });
-=======
-    "\000\040\000\004\004\005\001\002\000\004\002\042\001" +
-    "\002\000\004\005\006\001\002\000\006\006\007\007\010" +
-    "\001\002\000\012\002\uffff\010\uffff\011\uffff\012\uffff\001" +
-    "\002\000\012\002\ufffd\010\ufffd\011\ufffd\012\ufffd\001\002" +
-    "\000\004\002\000\001\002\000\012\002\ufff9\010\013\011" +
-    "\ufff9\012\ufff9\001\002\000\004\017\033\001\002\000\010" +
-    "\002\ufff4\011\015\012\ufff4\001\002\000\004\017\022\001" +
-    "\002\000\006\002\ufff2\012\017\001\002\000\004\013\021" +
-    "\001\002\000\004\002\ufffc\001\002\000\004\002\ufff3\001" +
-    "\002\000\006\014\024\015\023\001\002\000\004\017\030" +
-    "\001\002\000\004\017\025\001\002\000\010\002\ufff8\011" +
-    "\ufff8\012\ufff8\001\002\000\010\002\ufff4\011\015\012\ufff4" +
-    "\001\002\000\006\002\ufff7\012\ufff7\001\002\000\010\002" +
-    "\ufff6\011\ufff6\012\ufff6\001\002\000\010\002\ufff4\011\015" +
-    "\012\ufff4\001\002\000\006\002\ufff5\012\ufff5\001\002\000" +
-    "\012\002\ufffb\010\ufffb\011\ufffb\012\ufffb\001\002\000\012" +
-    "\002\ufff9\010\013\011\ufff9\012\ufff9\001\002\000\010\002" +
-    "\ufffa\011\ufffa\012\ufffa\001\002\000\012\002\ufff9\010\013" +
-    "\011\ufff9\012\ufff9\001\002\000\010\002\ufff4\011\015\012" +
-    "\ufff4\001\002\000\006\002\ufff2\012\017\001\002\000\004" +
-    "\002\ufffe\001\002\000\004\002\001\001\002" });
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+    "\000\042\000\006\003\004\004\006\001\002\000\004\002" +
+    "\uffff\001\002\000\004\002\044\001\002\000\004\005\007" +
+    "\001\002\000\010\003\011\006\010\007\012\001\002\000" +
+    "\012\002\ufffe\010\ufffe\011\ufffe\012\ufffe\001\002\000\004" +
+    "\002\ufffa\001\002\000\012\002\ufffc\010\ufffc\011\ufffc\012" +
+    "\ufffc\001\002\000\004\002\000\001\002\000\012\002\ufff7" +
+    "\010\015\011\ufff7\012\ufff7\001\002\000\004\017\035\001" +
+    "\002\000\010\002\ufff2\011\017\012\ufff2\001\002\000\004" +
+    "\017\024\001\002\000\006\002\ufff0\012\021\001\002\000" +
+    "\004\013\023\001\002\000\004\002\ufffb\001\002\000\004" +
+    "\002\ufff1\001\002\000\006\014\026\015\025\001\002\000" +
+    "\004\017\032\001\002\000\004\017\027\001\002\000\010" +
+    "\002\ufff6\011\ufff6\012\ufff6\001\002\000\010\002\ufff2\011" +
+    "\017\012\ufff2\001\002\000\006\002\ufff5\012\ufff5\001\002" +
+    "\000\010\002\ufff4\011\ufff4\012\ufff4\001\002\000\010\002" +
+    "\ufff2\011\017\012\ufff2\001\002\000\006\002\ufff3\012\ufff3" +
+    "\001\002\000\012\002\ufff9\010\ufff9\011\ufff9\012\ufff9\001" +
+    "\002\000\012\002\ufff7\010\015\011\ufff7\012\ufff7\001\002" +
+    "\000\010\002\ufff8\011\ufff8\012\ufff8\001\002\000\012\002" +
+    "\ufff7\010\015\011\ufff7\012\ufff7\001\002\000\010\002\ufff2" +
+    "\011\017\012\ufff2\001\002\000\006\002\ufff0\012\021\001" +
+    "\002\000\004\002\ufffd\001\002\000\004\002\001\001\002" +
+    "" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -102,33 +75,20 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-<<<<<<< HEAD
-    "\000\035\000\004\002\004\001\001\000\002\001\001\000" +
+    "\000\042\000\004\002\004\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\004\003\012\001\001" +
-    "\000\004\004\033\001\001\000\002\001\001\000\004\004" +
-    "\014\001\001\000\002\001\001\000\002\001\001\000\004" +
-    "\005\016\001\001\000\002\001\001\000\004\006\020\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\004\005\026\001\001\000\002\001\001\000\004\005\030" +
-    "\001\001\000\002\001\001\000\004\004\032\001\001\000" +
-    "\002\001\001\000\004\005\034\001\001\000\004\006\035" +
-    "\001\001\000\002\001\001\000\002\001\001" });
-=======
-    "\000\040\000\004\002\003\001\001\000\002\001\001\000" +
-    "\002\001\001\000\004\003\010\001\001\000\004\007\035" +
-    "\001\001\000\004\010\011\001\001\000\002\001\001\000" +
-    "\004\004\013\001\001\000\002\001\001\000\004\005\015" +
-    "\001\001\000\002\001\001\000\004\006\017\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\012" +
-    "\025\001\001\000\004\005\026\001\001\000\002\001\001" +
-    "\000\004\013\030\001\001\000\004\005\031\001\001\000" +
-    "\002\001\001\000\004\011\033\001\001\000\004\004\034" +
-    "\001\001\000\002\001\001\000\004\004\036\001\001\000" +
-    "\004\005\037\001\001\000\004\006\040\001\001\000\002" +
-    "\001\001\000\002\001\001" });
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+    "\000\004\007\037\001\001\000\002\001\001\000\004\010" +
+    "\013\001\001\000\002\001\001\000\004\004\015\001\001" +
+    "\000\002\001\001\000\004\005\017\001\001\000\002\001" +
+    "\001\000\004\006\021\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\012\027\001\001\000\004" +
+    "\005\030\001\001\000\002\001\001\000\004\013\032\001" +
+    "\001\000\004\005\033\001\001\000\002\001\001\000\004" +
+    "\011\035\001\001\000\004\004\036\001\001\000\002\001" +
+    "\001\000\004\004\040\001\001\000\004\005\041\001\001" +
+    "\000\004\006\042\001\001\000\002\001\001\000\002\001" +
+    "\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -241,7 +201,6 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
           case 2: // S ::= error 
             {
               Object RESULT =null;
@@ -253,10 +212,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // TYPE ::= DIRECTED VERTICES EDGES COMMANDS 
-=======
-          case 2: // NT$0 ::= 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 3: // NT$0 ::= 
             {
               Object RESULT =null;
 
@@ -268,11 +224,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 4: // TYPE ::= UNDIRECTED VERTICES EDGES COMMANDS 
-=======
-          case 3: // TYPE ::= DIRECTED NT$0 VERTICES EDGES COMMANDS 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 4: // TYPE ::= DIRECTED NT$0 VERTICES EDGES COMMANDS 
             {
               Object RESULT =null;
               // propagate RESULT from NT$0
@@ -283,20 +235,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 5: // TYPE ::= error 
-            {
-              Object RESULT =null;
-		 parser.defineError("Tipo de grafo inválido. Use 'directed' ou 'undirected'"); 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
-            }
-          return CUP$Parser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // VERTICES ::= VERTEX ID VERTICES 
-=======
-          case 4: // NT$1 ::= 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 5: // NT$1 ::= 
             {
               Object RESULT =null;
 
@@ -307,10 +246,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 7: // VERTICES ::= 
-=======
-          case 5: // TYPE ::= UNDIRECTED NT$1 VERTICES EDGES COMMANDS 
+          case 6: // TYPE ::= UNDIRECTED NT$1 VERTICES EDGES COMMANDS 
             {
               Object RESULT =null;
               // propagate RESULT from NT$1
@@ -321,7 +257,16 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // NT$2 ::= 
+          case 7: // TYPE ::= error 
+            {
+              Object RESULT =null;
+		 parser.defineError("Tipo de grafo inválido. Use 'directed' ou 'undirected'"); 
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // NT$2 ::= 
             {
               Object RESULT =null;
 		int ileft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
@@ -335,7 +280,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // VERTICES ::= VERTEX ID NT$2 VERTICES 
+          case 9: // VERTICES ::= VERTEX ID NT$2 VERTICES 
             {
               Object RESULT =null;
               // propagate RESULT from NT$2
@@ -349,8 +294,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // VERTICES ::= 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 10: // VERTICES ::= 
             {
               Object RESULT =null;
 
@@ -359,11 +303,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 8: // EDGES ::= EDGE ID ARROW ID EDGES 
-=======
-          case 9: // NT$3 ::= 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 11: // NT$3 ::= 
             {
               Object RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
@@ -380,11 +320,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 9: // EDGES ::= EDGE ID DASH ID EDGES 
-=======
-          case 10: // EDGES ::= EDGE ID ARROW ID NT$3 EDGES 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 12: // EDGES ::= EDGE ID ARROW ID NT$3 EDGES 
             {
               Object RESULT =null;
               // propagate RESULT from NT$3
@@ -401,10 +337,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 10: // EDGES ::= 
-=======
-          case 11: // NT$4 ::= 
+          case 13: // NT$4 ::= 
             {
               Object RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
@@ -421,7 +354,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // EDGES ::= EDGE ID DASH ID NT$4 EDGES 
+          case 14: // EDGES ::= EDGE ID DASH ID NT$4 EDGES 
             {
               Object RESULT =null;
               // propagate RESULT from NT$4
@@ -438,8 +371,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // EDGES ::= 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 15: // EDGES ::= 
             {
               Object RESULT =null;
 
@@ -448,11 +380,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 11: // COMMANDS ::= PRINT ADJACENCY 
-=======
-          case 14: // COMMANDS ::= PRINT ADJACENCY 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 16: // COMMANDS ::= PRINT ADJACENCY 
             {
               Object RESULT =null;
 		
@@ -464,11 +392,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-<<<<<<< HEAD
-          case 12: // COMMANDS ::= 
-=======
-          case 15: // COMMANDS ::= 
->>>>>>> ce3aa7a99720e91f55b4fea54bbda0eabb685637
+          case 17: // COMMANDS ::= 
             {
               Object RESULT =null;
 

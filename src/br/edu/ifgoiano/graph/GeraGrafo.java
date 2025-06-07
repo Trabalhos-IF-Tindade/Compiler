@@ -1,5 +1,4 @@
-package br.edu.ifgoiano.grath;
-
+package br.edu.ifgoiano.graph;
 
 public class GeraGrafo {
     public static void main(String[] args) {
