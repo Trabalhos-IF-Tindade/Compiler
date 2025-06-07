@@ -1,4 +1,4 @@
-GRAPH:
+GRAsPHhhgjgd:
  directed
  vertex A
  vertex B

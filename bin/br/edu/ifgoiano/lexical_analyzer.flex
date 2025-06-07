@@ -2,7 +2,6 @@ package br.edu.ifgoiano;
 
 import java_cup.runtime.Symbol;
 import br.edu.ifgoiano.except.ListError;
-//import br.edu.ifgoiano.sym;
 
 %%
 %cup
@@ -14,8 +13,6 @@ import br.edu.ifgoiano.except.ListError;
 %caseless
 
 %{
-
-
     private ListError listError;
     
     public Yylex(java.io.FileReader in, ListError listError) {
@@ -48,31 +45,34 @@ import br.edu.ifgoiano.except.ListError;
     }
 %}
 
-
 digit = [0-9]
-number = {digit}+
+letter = [a-zA-Z]
+identifier = {letter}({letter}|{digit}|_)*
 
 %%
 
-"graph"        { return createSymbol(Sym.GRAPH, yytext()); }
-"vertex"       { return createSymbol(Sym.VERTEX, yytext()); }
-"edge"         { return createSymbol(Sym.EDGE, yytext()); }
-"print"        { return createSymbol(Sym.PRINT, yytext()); }
-"adjacency"    { return createSymbol(Sym.ADJACENCY, yytext()); }
-"directed"     { return createSymbol(Sym.DIRECTED, yytext()); }
-"undirected"   { return createSymbol(Sym.UNDIRECTED, yytext()); }
+"graph"         { return createSymbol(Sym.GRAPH, yytext()); }
+"vertex"        { return createSymbol(Sym.VERTEX, yytext()); }
+"edge"          { return createSymbol(Sym.EDGE, yytext()); }
+"print"         { return createSymbol(Sym.PRINT, yytext()); }
+"adjacency"     { return createSymbol(Sym.ADJACENCY, yytext()); }
+"directed"      { return createSymbol(Sym.DIRECTED, yytext()); }
+"undirected"    { return createSymbol(Sym.UNDIRECTED, yytext()); }
 
 "->"            { return createSymbol(Sym.ARROW, yytext()); }
 "--"            { return createSymbol(Sym.DASH, yytext()); }
-":"            { return createSymbol(Sym.COLON, yytext()); }  
+":"             { return createSymbol(Sym.COLON, yytext()); }  
 
-[a-zA-Z][a-zA-Z0-9_]*  { return createSymbol(Sym.ID, yytext()); }
+{identifier}    { return createSymbol(Sym.ID, yytext()); }
 
-[\r\n\t ]+             { /* ignora espaços */ }
+[\r\n]+         { yyline++; yycolumn = 1; } // incrementa linha e reseta coluna
+[\t]            { yycolumn += 4; } // tabulação assume 4 espaços
 
-. {
-    defineError(yyline + 1, yycolumn + 1, "Erro léxico: símbolo desconhecido '" + yytext() + "'");
-    return createSymbol(Sym.ERROR);
-}
+[\r\n\t ]+      { /* ignora espaços */ }
 
-<<EOF>> { return createSymbol(Sym.EOF); }
+.               {
+                    defineError(yyline + 1, yycolumn + 1, "Erro léxico: símbolo desconhecido '" + yytext() + "'");
+                    return createSymbol(Sym.ERROR);
+                }
+
+<<EOF>>         { return createSymbol(Sym.EOF); }

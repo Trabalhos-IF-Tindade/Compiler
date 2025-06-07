@@ -2,7 +2,6 @@ package br.edu.ifgoiano;
 
 import java_cup.runtime.*;
 
-// tartamento de erros
 parser code {:
   public void syntax_error(Symbol s){
     this.defineError(s.left, s.right);
@@ -33,10 +32,15 @@ non terminal S, TYPE, VERTICES, EDGES, COMMANDS;
 // REGRA INICIAL
 start with S;
 
-S ::= GRAPH COLON TYPE ;
+S ::= GRAPH COLON TYPE
+    | error {: 
+        parser.defineError("Esperado 'GRAPH:' no início do arquivo!");
+      :}
+    ;
 
 TYPE ::= DIRECTED VERTICES EDGES COMMANDS
        | UNDIRECTED VERTICES EDGES COMMANDS
+       | error {: parser.defineError("Tipo de grafo inválido. Use 'directed' ou 'undirected'"); :}
        ;
 
 VERTICES ::= VERTEX ID VERTICES
@@ -51,6 +55,3 @@ EDGES ::= EDGE ID ARROW ID EDGES     // para grafos direcionados
 COMMANDS ::= PRINT ADJACENCY
            | /* vazio */
            ;
-
-
-

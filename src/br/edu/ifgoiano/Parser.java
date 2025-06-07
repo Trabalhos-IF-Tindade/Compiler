@@ -31,10 +31,11 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\013\000\002\002\004\000\002\002\005\000\002\003" +
-    "\006\000\002\003\006\000\002\004\005\000\002\004\002" +
-    "\000\002\005\007\000\002\005\007\000\002\005\002\000" +
-    "\002\006\004\000\002\006\002" });
+    "\000\015\000\002\002\004\000\002\002\005\000\002\002" +
+    "\003\000\002\003\006\000\002\003\006\000\002\003\003" +
+    "\000\002\004\005\000\002\004\002\000\002\005\007\000" +
+    "\002\005\007\000\002\005\002\000\002\006\004\000\002" +
+    "\006\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -42,23 +43,24 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\033\000\004\004\005\001\002\000\004\002\035\001" +
-    "\002\000\004\015\006\001\002\000\006\011\007\012\010" +
-    "\001\002\000\012\002\ufffc\005\012\006\ufffc\007\ufffc\001" +
-    "\002\000\012\002\ufffc\005\012\006\ufffc\007\ufffc\001\002" +
-    "\000\004\002\000\001\002\000\004\017\030\001\002\000" +
-    "\010\002\ufff9\006\014\007\ufff9\001\002\000\004\017\021" +
-    "\001\002\000\006\002\ufff7\007\016\001\002\000\004\010" +
-    "\020\001\002\000\004\002\ufffe\001\002\000\004\002\ufff8" +
-    "\001\002\000\006\013\023\014\022\001\002\000\004\017" +
-    "\026\001\002\000\004\017\024\001\002\000\010\002\ufff9" +
-    "\006\014\007\ufff9\001\002\000\006\002\ufffb\007\ufffb\001" +
-    "\002\000\010\002\ufff9\006\014\007\ufff9\001\002\000\006" +
-    "\002\ufffa\007\ufffa\001\002\000\012\002\ufffc\005\012\006" +
-    "\ufffc\007\ufffc\001\002\000\010\002\ufffd\006\ufffd\007\ufffd" +
-    "\001\002\000\010\002\ufff9\006\014\007\ufff9\001\002\000" +
-    "\006\002\ufff7\007\016\001\002\000\004\002\uffff\001\002" +
-    "\000\004\002\001\001\002" });
+    "\000\035\000\006\003\004\004\006\001\002\000\004\002" +
+    "\uffff\001\002\000\004\002\037\001\002\000\004\015\007" +
+    "\001\002\000\010\003\011\011\010\012\012\001\002\000" +
+    "\012\002\ufffa\005\014\006\ufffa\007\ufffa\001\002\000\004" +
+    "\002\ufffc\001\002\000\012\002\ufffa\005\014\006\ufffa\007" +
+    "\ufffa\001\002\000\004\002\000\001\002\000\004\017\032" +
+    "\001\002\000\010\002\ufff7\006\016\007\ufff7\001\002\000" +
+    "\004\017\023\001\002\000\006\002\ufff5\007\020\001\002" +
+    "\000\004\010\022\001\002\000\004\002\ufffd\001\002\000" +
+    "\004\002\ufff6\001\002\000\006\013\025\014\024\001\002" +
+    "\000\004\017\030\001\002\000\004\017\026\001\002\000" +
+    "\010\002\ufff7\006\016\007\ufff7\001\002\000\006\002\ufff9" +
+    "\007\ufff9\001\002\000\010\002\ufff7\006\016\007\ufff7\001" +
+    "\002\000\006\002\ufff8\007\ufff8\001\002\000\012\002\ufffa" +
+    "\005\014\006\ufffa\007\ufffa\001\002\000\010\002\ufffb\006" +
+    "\ufffb\007\ufffb\001\002\000\010\002\ufff7\006\016\007\ufff7" +
+    "\001\002\000\006\002\ufff5\007\020\001\002\000\004\002" +
+    "\ufffe\001\002\000\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -66,17 +68,17 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\033\000\004\002\003\001\001\000\002\001\001\000" +
-    "\002\001\001\000\004\003\010\001\001\000\004\004\031" +
-    "\001\001\000\004\004\012\001\001\000\002\001\001\000" +
-    "\002\001\001\000\004\005\014\001\001\000\002\001\001" +
-    "\000\004\006\016\001\001\000\002\001\001\000\002\001" +
+    "\000\035\000\004\002\004\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\003\012\001\001" +
+    "\000\004\004\033\001\001\000\002\001\001\000\004\004" +
+    "\014\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\005\016\001\001\000\002\001\001\000\004\006\020\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\005\024\001\001\000\002\001" +
-    "\001\000\004\005\026\001\001\000\002\001\001\000\004" +
-    "\004\030\001\001\000\002\001\001\000\004\005\032\001" +
-    "\001\000\004\006\033\001\001\000\002\001\001\000\002" +
-    "\001\001" });
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\005\026\001\001\000\002\001\001\000\004\005\030" +
+    "\001\001\000\002\001\001\000\004\004\032\001\001\000" +
+    "\002\001\001\000\004\005\034\001\001\000\004\006\035" +
+    "\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -180,7 +182,18 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // TYPE ::= DIRECTED VERTICES EDGES COMMANDS 
+          case 2: // S ::= error 
+            {
+              Object RESULT =null;
+		 
+        parser.defineError("Esperado 'GRAPH:' no início do arquivo!");
+      
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // TYPE ::= DIRECTED VERTICES EDGES COMMANDS 
             {
               Object RESULT =null;
 
@@ -189,7 +202,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // TYPE ::= UNDIRECTED VERTICES EDGES COMMANDS 
+          case 4: // TYPE ::= UNDIRECTED VERTICES EDGES COMMANDS 
             {
               Object RESULT =null;
 
@@ -198,7 +211,16 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // VERTICES ::= VERTEX ID VERTICES 
+          case 5: // TYPE ::= error 
+            {
+              Object RESULT =null;
+		 parser.defineError("Tipo de grafo inválido. Use 'directed' ou 'undirected'"); 
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("TYPE",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // VERTICES ::= VERTEX ID VERTICES 
             {
               Object RESULT =null;
 
@@ -207,7 +229,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // VERTICES ::= 
+          case 7: // VERTICES ::= 
             {
               Object RESULT =null;
 
@@ -216,7 +238,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // EDGES ::= EDGE ID ARROW ID EDGES 
+          case 8: // EDGES ::= EDGE ID ARROW ID EDGES 
             {
               Object RESULT =null;
 
@@ -225,7 +247,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // EDGES ::= EDGE ID DASH ID EDGES 
+          case 9: // EDGES ::= EDGE ID DASH ID EDGES 
             {
               Object RESULT =null;
 
@@ -234,7 +256,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // EDGES ::= 
+          case 10: // EDGES ::= 
             {
               Object RESULT =null;
 
@@ -243,7 +265,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // COMMANDS ::= PRINT ADJACENCY 
+          case 11: // COMMANDS ::= PRINT ADJACENCY 
             {
               Object RESULT =null;
 
@@ -252,7 +274,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // COMMANDS ::= 
+          case 12: // COMMANDS ::= 
             {
               Object RESULT =null;
 
