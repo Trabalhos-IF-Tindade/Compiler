@@ -2,7 +2,6 @@ package br.edu.ifgoiano;
 
 import br.edu.ifgoiano.grath.Grafo;
 import java_cup.runtime.*;
-%recover
 
 parser code {:
     // tratamento de erros
