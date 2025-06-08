@@ -1,6 +1,7 @@
 package br.edu.ifgoiano.except;
 
 public class Error {
+
     private int line, column;
     private String text;
 
@@ -11,9 +12,8 @@ public class Error {
     }
 
     public void print() {
-        String aux = "Erro na linha " + line + " e coluna " + column +
-                ": ";
-        if (this.text == null)
+        String aux = "Erro na linha " + line + " e coluna " + column + ": ";
+        if(this.text == null)
             aux += "Erro desconhecido";
         else
             aux += this.text;
@@ -23,8 +23,24 @@ public class Error {
     public String getText() {
         return text;
     }
-
+    
     public void setText(String text) {
         this.text = text;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
     }
 }

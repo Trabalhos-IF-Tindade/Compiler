@@ -4,98 +4,126 @@ import br.edu.ifgoiano.graph.Grafo;
 import java_cup.runtime.*;
 
 parser code {:
-    // tratamento de erros
-    public void syntax_error(Symbol s) {
-        this.defineError(s.left, s.right);
-    }
-    public void defineError(int line, int column, String text) {
-        Yylex scanner = (Yylex) this.getScanner();
-        scanner.defineError(line, column, text);
-    }
-    public void defineError(int linha, int coluna) {
-        Yylex scanner = (Yylex) this.getScanner();
-        scanner.defineError(linha, coluna);
-    }
-    public void defineError(String text) {
-        Yylex scanner = (Yylex) this.getScanner();
-        scanner.defineError(text);
-    }
+  private Grafo grafo;
+  private java.util.Set<String> declared = new java.util.HashSet<>();
 
-    // campo para construir o grafo
-    private Grafo grafo;
+  public Grafo getGrafo() { return grafo; }
 
-    // expõe o grafo para uso externo (no seu main)
-    public Grafo getGrafo() {
-        return grafo;
-    }
+  public void syntax_error(Symbol s){    
+        this.defineError(s.left, s.right);   
+	}
+
+  public void defineError(int line, int column, String text) {
+      Yylex scanner = (Yylex) this.getScanner();
+      scanner.defineError(line, column, text);
+  }
+
+  public void defineError(int linha, int coluna){   
+      Yylex scanner = (Yylex) this.getScanner();
+      scanner.defineError(linha, coluna);
+	}
+
+  public void defineError(String text) {
+      Yylex scanner = (Yylex) this.getScanner();
+      scanner.defineError(text);
+  }
 :};
 
-// TERMINAIS
 terminal GRAPH, COLON, DIRECTED, UNDIRECTED,
          VERTEX, EDGE, PRINT, ADJACENCY,
-         ARROW, DASH, ERROR;
-terminal String ID;
+         ARROW, DASH;
+terminal String ID, ERROR;
 
-// NÃO-TERMINAIS
 non terminal S, TYPE, VERTICES, EDGES, COMMANDS;
 
-// REGRA INICIAL
 start with S;
 
 S ::= GRAPH COLON TYPE
     | error {: 
-        parser.defineError("Esperado 'GRAPH:' no início do arquivo!");
+        parser.defineError("Sintaxe inválida. Use 'GRAPH:' seguido de 'directed' ou 'undirected'.");
       :}
     ;
 
 TYPE ::=
     DIRECTED
-      {:
-         // o segundo parâmetro true ativa seu flag de "print adjacency"
-         parser.grafo = new Grafo(true, true);
-      :}
+    {:
+        parser.grafo = new Grafo(true, true);
+    :}
     VERTICES EDGES COMMANDS
-  | UNDIRECTED
-      {:
-         parser.grafo = new Grafo(false, true);
-      :}
+    | UNDIRECTED
+    {:
+        parser.grafo = new Grafo(false, true);
+    :}
     VERTICES EDGES COMMANDS
-       | error {: parser.defineError("Tipo de grafo inválido. Use 'directed' ou 'undirected'"); :}
+    | error {: parser.defineError("Erro na sintaxe de construção do Grafo."); :}
   ;
-
-
 
 VERTICES ::=
     VERTEX ID:i
       {:
-        parser.grafo.adicionarVertice(i);
+        if(declared.contains(i)) {
+          parser.defineError(ileft, iright, "Vértice '" + i + "' já declarado");
+        } else {
+          declared.add(i);
+          parser.grafo.adicionarVertice(i);
+        }
       :}
     VERTICES
-  | /* vazio */
+    | /* vazio */
   ;
 
 EDGES ::=
     EDGE ID:v ARROW ID:w
       {:
-        parser.grafo.adicionarAresta(v, w, 1);
+        if (!declared.contains(v)) {
+          parser.defineError(vleft, vright,
+            "Vértice '" + v + "' não declarado");
+        }
+
+        if (!declared.contains(w)) {
+            parser.defineError(wleft, wright,
+              "Vértice '" + w + "' não declarado");
+        }
+
+        if (declared.contains(v) && declared.contains(w)) {
+            if (!parser.grafo.isDirecionado()) {
+                parser.defineError(vleft, vright,
+                  "Grafo não direcionado: não pode usar '->'");
+            } else {
+                parser.grafo.adicionarAresta(v, w);
+            }
+        }
       :}
     EDGES
-  | EDGE ID:v DASH ID:w
+    | EDGE ID:v DASH ID:w
       {:
-        parser.grafo.adicionarAresta(v, w, 1);
+        if (!declared.contains(v)) {
+          parser.defineError(vleft, vright,
+            "Vértice '" + v + "' não declarado");
+        }
+
+        if (!declared.contains(w)) {
+            parser.defineError(wleft, wright,
+              "Vértice '" + w + "' não declarado");
+        }
+
+        if (declared.contains(v) && declared.contains(w)) {
+            if (parser.grafo.isDirecionado()) {
+                parser.defineError(vleft, vright,
+                  "Grafo direcionado: não pode usar '--'");
+            } else {
+                parser.grafo.adicionarAresta(v, w);
+            }
+        }
       :}
     EDGES
   | /* vazio */
   ;
 
-COMMANDS ::=
-            PRINT ADJACENCY
-              {:
-                // dispara a gravação só se esse comando existir no input
+COMMANDS ::= PRINT ADJACENCY
+            {:
                 parser.grafo.salvarMatrizAdjacenciaEmArquivo("src/br/edu/ifgoiano/output/matriz_adjacencia.txt");
-              :}
+            :}
             | /* vazio */
             ;
-
-
 

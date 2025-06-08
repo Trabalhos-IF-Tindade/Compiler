@@ -1,12 +1,13 @@
 GRAPH:
 	undirected
-	vertex A;
+	vertex A
 	vertex B
 	vertex C
 	vertex D
 	vertex E
-	edge  A -- C 
-	edge  B -- C 
+	edge  B -- C
 	edge  C -- D 
 	edge  C -- E 
 	edge  D -- E 
+	edge  A -- B
+	print adjacency

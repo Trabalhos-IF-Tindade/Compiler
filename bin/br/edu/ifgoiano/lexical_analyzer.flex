@@ -8,8 +8,6 @@ import br.edu.ifgoiano.except.ListError;
 %unicode
 %line
 %column
-%class Yylex
-%public
 %caseless
 
 %{
@@ -24,6 +22,7 @@ import br.edu.ifgoiano.except.ListError;
         return listError;
     }
     
+    // registra erro com linha, coluna e texto
     public void defineError(int line, int column, String text) {
         this.listError.defineError(line, column, text);
     }
@@ -36,8 +35,9 @@ import br.edu.ifgoiano.except.ListError;
         this.listError.defineError(texto);
     }
     
+    // cria Symbol preservando posição
     public Symbol createSymbol(int token, Object value) {
-        return new Symbol(token, yyline, yycolumn, value);
+        return new Symbol(token, yyline + 1, yycolumn + 1, value);
     }
     
     public Symbol createSymbol(int token) {
@@ -45,8 +45,8 @@ import br.edu.ifgoiano.except.ListError;
     }
 %}
 
-digit = [0-9]
-letter = [a-zA-Z]
+digit      = [0-9]
+letter     = [a-zA-Z]
 identifier = {letter}({letter}|{digit}|_)*
 
 %%
@@ -65,16 +65,14 @@ identifier = {letter}({letter}|{digit}|_)*
 
 {identifier}    { return createSymbol(Sym.ID, yytext()); }
 
-[\r\n]+         { yyline++; yycolumn = 1; } // incrementa linha e reseta coluna
-[\t]            { yycolumn += 4; } // tabulação assume 4 espaços
+[\t\r\n ]+  {/* Ignorar espaços, quebras de linha, etc */}
 
-[\r\n\t ]+      { /* ignora espaços */ }
+<<EOF>>         { return createSymbol(Sym.EOF); }
 
 . {
     String texto = yytext();
-   defineError(yyline + 1, yycolumn + 1,"Erro léxico: símbolo desconhecido '" + texto + "'");
-   // devolve Sym.ERROR carregando o lexema
-   return createSymbol(Sym.ERROR, texto);
+    defineError(yyline + 1, yycolumn + 1,
+        "Erro léxico: símbolo desconhecido '" + texto + "'");
+    /* devolve token de erro para parser poder sincronizar */
+    return createSymbol(Sym.ERROR, texto);
 }
-
-<<EOF>>         { return createSymbol(Sym.EOF); }

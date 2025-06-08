@@ -1,5 +1,9 @@
 package br.edu.ifgoiano.except;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 
 public class ListError {
@@ -27,22 +31,32 @@ public class ListError {
         }
     }
 
-    private void writeToLogFile(int line, int column, String text) {
-        try (java.io.FileWriter writer = new java.io.FileWriter("errors.log", true)) {
-            writer.write("Erro" + (line > 0 ? " na linha " + line + ", coluna " + column : "") + ": " + text + "\n");
-        } catch (java.io.IOException e) {
-            System.err.println("Erro ao escrever no arquivo de log: " + e.getMessage());
-        }
-    }
-
     public void logErrors() {
-        for (Error e : this.errors) {
-            e.print();
+        try (BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(
+                        new FileOutputStream("errors.log", false),
+                        "UTF-8"
+                )
+        )) {
+            for (Error e : this.errors) {
+                String msg;
+                if (e.getLine() > 0) {
+                    msg = "Linha " + e.getLine()
+                            + ", Coluna " + e.getColumn()
+                            + ": " + e.getText();
+                } else {
+                    msg = "Erro: " + e.getText();
+                }
+                writer.write(msg);
+                writer.newLine();
+            }
+            System.out.println("Erro(s) de sintaxe. Confira os logs salvos em: /errors.log");
+        } catch (IOException ex) {
+            System.err.println("Falha ao gravar log de erros: " + ex.getMessage());
         }
     }
 
     public boolean hasErrors() {
-        return this.errors.size() > 0;
+        return !this.errors.isEmpty();
     }
-
 }
